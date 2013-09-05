@@ -1,0 +1,32 @@
+<!-- Modal -->
+<div class="hide modal" id="modal" role="dialog" tabindex="-1">
+	<div id="modal-content"></div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="span3"></div>
+		<div class="span6 dialog">
+			<div class="logo" style="height:52px">
+				<%= link_to image_tag("logo.png", :width => 169, :height => 52), root_path %>
+			</div>
+			<hr>
+			<div class="alert alert-success" id="flash_notice" style="">
+				<a class="close">×</a>
+				<div id="flash_notice_content">A confirmation email has been sent to your email address. Please open the link in this email to activate your account.</div>
+			</div>
+
+			<center>
+				<div class="small">
+					<%= link_to "Click here if you've not gotten confirmation email", new_user_confirmation_path %>
+				</div>
+				<br>
+				<br>
+			</center>
+
+		</div>
+		<div class="span3"></div>
+	</div>
+</div>
+
+

@@ -1,0 +1,63 @@
+<div class="container main_container">
+
+	<div class="row">
+		<div class="span12 main one_column">
+			<div class="content">
+
+				<% if @user %>
+				<div class="span3">
+					<%= image_tag("screen.png")%>
+				</div>
+				<div class="span5">
+					<h1 style="font-size:40px;"><%= @user.name %> <%= @user.surname %></h1>
+					<p style="padding-top: 25px;">"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem</p>
+				</div>
+				<div class="span3">
+					<%= image_tag("social.png")%>
+				</div>
+
+				<div style="padding-top: 20px;" class="clear"></div>
+				<h1>About</h1>
+				<hr>
+				<p><%= @user.about %></p>
+
+				<h1 style="padding-top: 25px;">Education</h1>
+				<hr>
+				<% @user.educations.each do |education| %>
+				<div class="profile_enty" style="padding-bottom: 15px;">
+					<h2><%= education.title %></h2>
+					<p>Period: <strong><%= education.start_year %> - <%= education.end_year %></strong></p>
+					<p>Level: <strong><%= education.level %></strong></p>
+					<p><%= education.remarks %></p>
+				</div>
+				<% end %>
+
+
+				<h1 style="padding-top: 25px;">Experiences</h1>
+				<hr>
+				<% @user.experiences.each do |experience| %>
+				<div class="profile_enty" style="padding-bottom: 15px;">
+					<h2><%= experience.name %></h2>
+					<p>Title: <strong><%= experience.title %></strong></p>
+					<p>Period: <strong><%= experience.start_year %> - <%= experience.end_year %></strong></p>
+					<p><%= experience.remarks %></p>
+				</div>
+				<% end %>
+
+				<h1 style="padding-top: 25px;">Reviews</h1>
+				<hr>
+
+
+
+
+				<% else %>
+				<h1>Oh ou! :(</h1>
+				<hr>
+				<p>Sorry, but no one with public profile <%= params[:id] %> was found</p>
+				<% end %>
+
+			</div>
+
+		</div>
+	</div>
+</div>

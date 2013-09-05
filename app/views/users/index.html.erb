@@ -1,0 +1,1097 @@
+<body class="two_column" data-twttr-rendered="true">
+<div class="full_container">
+
+<!-- Modal -->
+<div class="hide modal" id="modal" role="dialog" tabindex="-1">
+<div id="modal-content"></div>
+</div>
+
+<script>
+  window.since_path = "/dashboard/activiteiten/new_activities?since=1376304781";
+  window.interval_refresh_rate = 30000
+</script>
+<script>
+  (function() {
+    var _this = this;
+  
+    window.initActivities = function() {
+      clearInterval(window.newActivitiesInterval);
+      return window.newActivitiesInterval = setInterval(function() {
+        return $.get(window.since_path);
+      }, window.interval_refresh_rate);
+    };
+  
+    $(window).ready(initActivities);
+  
+    $(document).bind('page:change', initActivities);
+  
+  }).call(this);
+</script>
+
+<div class="loader"></div>
+<div class="header">
+<div class="container">
+<div class="navbar pull-left">
+<a href="/dashboard" class="brand"><img alt="Eduapp_logo" src="/assets/eduapp_logo-55c64720a4a05244ac05c326a7c51dee.png">
+</a></div>
+<div class="navbar navbar-left navbar-inverse pull-left">
+<ul class="nav">
+<li>
+<div class="search">
+<form accept-charset="UTF-8" action="/zoeken/apps" class="form-horizontal navbar-form" id="new_search" method="get" novalidate="novalidate"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"></div><input autocomplete="off" name="search[title]" placeholder="Ik ben op zoek naar..." type="text">
+</form>
+</div>
+<div class="search_autocomplete_results" style="display:none">
+<div class="back" style="display: none;"></div>
+<div class="extended_container container">
+<div class="category"></div>
+<div class="bar extended"></div>
+<div class="clear"></div>
+</div>
+<div class="apps_container container">
+<div class="category">Apps</div>
+<div class="bar apps"></div>
+<div class="clear"></div>
+</div>
+<div class="lessons_container container">
+<div class="category">Lesideeën</div>
+<div class="bar lessons"></div>
+<div class="clear"></div>
+</div>
+<div class="lists_container container">
+<div class="category">Lijsten</div>
+<div class="bar lists"></div>
+<div class="clear"></div>
+</div>
+<div class="profiles_container container">
+<div class="category">Personen</div>
+<div class="bar profiles"></div>
+<div class="clear"></div>
+</div>
+<div class="schools_container container">
+<div class="category">Scholen</div>
+<div class="bar schools"></div>
+<div class="clear"></div>
+</div>
+</div>
+<script>
+  (function() {
+    var doSearch, search_el,
+      _this = this;
+  
+    search_el = $('input[name="search[title]"]');
+  
+    search_el.bind('keyup', function() {
+      clearTimeout(window.auto_complete_timeout);
+      return window.auto_complete_timeout = setTimeout(doSearch, 500);
+    });
+  
+    doSearch = function() {
+      var q;
+  
+      q = search_el.val();
+      return $.get("/zoeken/autocomplete.js" + "?search[title]=" + q);
+    };
+  
+    $(window.document).bind('click', function(e) {
+      if ($(e.target).parents('form, .search_autocomplete_results').length === 0) {
+        return $('.search_autocomplete_results').hide();
+      }
+    });
+  
+  }).call(this);
+</script>
+
+</li>
+</ul>
+</div>
+<div class="navbar navbar-right pull-right">
+<ul class="nav">
+<li class="notifications"><a class="notifications_button main-nav">
+<div class="badge badge-darkred notifications">
+&nbsp;&nbsp;
+</div>
+
+</a>
+<div class="popover bottom notifications_popup" id="notifications_popup">
+<div class="arrow"></div>
+<div class="popover-title">Meldingen</div>
+<div class="popover-content notifications_content">
+<div class="row activity">
+<div class="description">
+<div class="small">
+<em>Er zijn nog geen meldingen.</em>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+<script>
+  (function() {
+    $('.notifications_content').dontScrollParent();
+  
+  }).call(this);
+</script>
+</li>
+<li class="">
+<a href="/dashboard" class="main-nav">Dashboard
+</a></li>
+<li class="">
+<a class="dropdown-toggle main-nav" data-hover="dropdown" data-toggle="dropdown" href="/zoeken">
+Zoeken
+<span class="caret"></span>
+</a>
+<ul class="dropdown-menu pull-right" style="margin-right: 270px">
+<li>
+<a href="/zoeken/apps">Apps</a>
+</li>
+<li>
+<a href="/zoeken/lesideeen">Lesideeën</a>
+</li>
+<li>
+<a href="/zoeken/lijsten">Lijsten</a>
+</li>
+<li>
+<a href="/zoeken/personen">Personen</a>
+</li>
+<li>
+<a href="/zoeken/scholen">Scholen</a>
+</li>
+</ul>
+</li>
+<li>
+<a class="dropdown-toggle main-nav" data-hover="dropdown" data-toggle="dropdown" href="/ontdekken/apps">
+Ontdekken
+<span class="caret"></span>
+</a>
+<ul class="dropdown-menu pull-right" style="margin-right: 164px">
+<li>
+<a href="/ontdekken/apps">Apps</a>
+</li>
+<li>
+<a href="/ontdekken/lesideeen">Lesideeën</a>
+</li>
+<li>
+<a href="/ontdekken/lijsten">Lijsten</a>
+</li>
+<li>
+<a href="/ontdekken/profielen">Personen</a>
+</li>
+</ul>
+</li>
+<li class="">
+<a class="dropdown-toggle main-nav" data-hover="dropdown" data-toggle="dropdown" href="#">
+Maken
+<span class="caret"></span>
+</a>
+<ul class="dropdown-menu pull-right" style="margin-right: 82px">
+<li>
+<a href="/dashboard/lijsten/new" data-remote="true">Nieuwe lijst</a>
+</li>
+<li>
+<a href="/dashboard/lesideeen/new">Nieuw lesidee</a>
+</li>
+</ul>
+</li>
+<li class="active profile">
+<a class="dropdown-toggle main-nav" data-hover="dropdown" data-toggle="dropdown" href="/profielen/pupca">
+<img alt="Thumb" src="/assets/missing_avatars_new/thumb.png">
+<span class="caret"></span>
+</a>
+<ul class="dropdown-menu pull-right">
+<li>
+<a href="/profielen/pupca">Mijn profiel</a>
+</li>
+<li>
+<a href="/profielen/pupca/lijsten">Mijn lijsten</a>
+</li>
+<li>
+<a href="/profielen/pupca/lesideeen">Mijn lesideeën</a>
+</li>
+<li>
+<a href="/instellingen/profiel">Instellingen</a>
+</li>
+<li>
+<a href="/dashboard/pro">Upgrade naar PRO</a>
+</li>
+<li class="divider"></li>
+<li>
+<a href="/dashboard/feedbacks/new?page=http%3A%2F%2Feduapp.nl%2Finstellingen%2Fprofiel" data-remote="true">Geef feedback</a>
+</li>
+<li class="divider"></li>
+<li>
+<a href="/uitloggen" data-method="delete" rel="nofollow"><font><font>Sign Out</font></font></a>
+</li>
+</ul>
+</li>
+<!-- %li=link_to t('.login', :default => 'Uitloggen'), logout_path, :method => :delete -->
+</ul>
+</div>
+</div>
+</div>
+
+<div class="container main_container" style="opacity: 1;">
+
+<div class="row nav_back">
+<div class="span2">
+<ul class="nav nav-list">
+<li class="active"><a href="/instellingen/profiel"><font><font>Profile</font></font></a></li>
+<li class=""><a href="/instellingen/voorkeuren"><font><font>Preferences</font></font></a></li>
+<li class=""><a href="/instellingen/account/social_accounts"><font><font>Couplings</font></font></a></li>
+<li class=""><a href="/instellingen/account"><font><font>Account</font></font></a></li>
+</ul>
+
+</div>
+<div class="span10 main">
+<div class="content">
+<div class="alert alert-error" id="flash_alert" style="display:none;">
+<a class="close"><font><font>×</font></font></a>
+<div id="flash_alert_content"></div>
+</div>
+<div class="alert alert-error" id="flash_error" style="display:none;">
+<a class="close"><font><font>×</font></font></a>
+<div id="flash_error_content"></div>
+</div>
+<div class="alert alert-error" id="flash_warning" style="display:none;">
+<a class="close"><font><font>×</font></font></a>
+<div id="flash_warning_content"></div>
+</div>
+<div class="alert alert-success" id="flash_notice" style="display:none;">
+<a class="close"><font><font>×</font></font></a>
+<div id="flash_notice_content"></div>
+</div>
+
+<h1><font><font>Profile</font></font></h1>
+<hr>
+<form accept-charset="UTF-8" action="/instellingen/profiel" class="form-horizontal form-vertical" enctype="multipart/form-data" id="edit_profile_8491" method="post" novalidate="novalidate"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="_method" type="hidden" value="put"><input name="authenticity_token" type="hidden" value="fjM1rILcdA5VkJneGhd8fmuXXDWhyKE5rxwDHkiivE8="></div><div class="control-group avatar optional profile_avatar"><label class="avatar optional control-label" for="profile_avatar"><font><font>Avatar</font></font></label><div class="controls"><div class="input-append customfile"><span class="customfile-feedback avatar optional" aria-hidden="true"><font><font>No file selected ... </font></font></span><span class="add-on customfile-button" aria-hidden="true" style="float: right;"><font><font>Browse</font></font></span></div><input class="avatar optional customfile-input" id="profile_avatar" name="profile[avatar]" type="file"></div></div>
+<div class="control-group text optional profile_description"><label class="text optional control-label" for="profile_description"><font><font>Description</font></font></label><div class="controls"><textarea class="text optional" cols="40" id="profile_description" name="profile[description]" rows="4"></textarea><p class="help-block"><font><font>Tell us about yourself in 160 characters.</font></font></p></div></div>
+
+<br>
+<!-- # = link_to 'Login with Facebook', '/auth/facebook/', {'data-no-turbolink' => 'true'} -->
+<br>
+<div class="control-group radio_buttons optional profile_function"><label class="radio_buttons optional control-label"><font><font>Role</font></font></label><div class="controls"><label class="radio"><input class="radio_buttons optional" id="profile_function_id_1" name="profile[function_id]" type="radio" value="1"><font><font>Teacher / Lecturer</font></font></label><label class="radio"><input class="radio_buttons optional" id="profile_function_id_4" name="profile[function_id]" type="radio" value="4"><font><font>Attendant</font></font></label><label class="radio"><input checked="checked" class="radio_buttons optional" id="profile_function_id_2" name="profile[function_id]" type="radio" value="2"><font><font>Pupil / Student</font></font></label><label class="radio"><input class="radio_buttons optional" id="profile_function_id_3" name="profile[function_id]" type="radio" value="3"><font><font>Parent / Caregiver</font></font></label><label class="radio"><input class="radio_buttons optional" id="profile_function_id_-1" name="profile[function_id]" type="radio" value="-1"><font><font>Other, namely:</font></font></label></div></div>
+<div class="control-group string optional profile_function_different function_different_wrapper"><div class="controls"><input class="string optional" disabled="disabled" id="profile_function_different" name="profile[function_different]" size="50" type="text" value=""></div></div>
+<div class="school" style="display: block;">
+<div class="control-group hidden profile_school_id"><div class="controls"><input class="hidden" id="profile_school_id" name="profile[school_id]" type="hidden"></div></div>
+<div class="control-group autocomplete required profile_organisation_different"><label class="autocomplete required control-label" for="profile_organisation_different"><abbr title="required"><font><font>*</font></font></abbr><font><font> Name School</font></font></label><div class="controls"><input class="autocomplete required" data-autocomplete="/instellingen/profiel/autocomplete_school_name" data-id-element="#profile_school_id" data-update-elements="{&quot;name&quot;:&quot;#profile_school_name&quot;}" id="profile_organisation_different" name="profile[organisation_different]" size="30" type="text" value="Unicorn Col"></div></div>
+<div class="fields"><!-- - raise f.associations.inspect -->
+<!-- - raise key.inspect -->
+<div class="categorization">
+<input id="profile_categorizations_attributes_0__destroy" name="profile[categorizations_attributes][0][_destroy]" type="hidden" value="false"><a href="javascript:void(0)" class="btn btn-small btn-destroy remove_nested_fields" data-association="categorizations" style="float: right; margin-right: 20px; display: none;"><i class="icon-trash"></i>
+</a>
+<div class="control-group select required profile_categorizations_school_type"><label class="select required control-label" for="profile_categorizations_attributes_0_school_type_id"><abbr title="required"><font><font>*</font></font></abbr><font><font> Sector</font></font></label><div class="controls"><select class="select required school_type_select" id="profile_categorizations_attributes_0_school_type_id" name="profile[categorizations_attributes][0][school_type_id]"><option value=""></option>
+<option value="1"><font><font>Primary education</font></font></option>
+<option value="2" selected="selected"><font><font>Secondary education</font></font></option>
+<option value="3"><font><font>Special education</font></font></option></select></div></div>
+<div class="school_type school_type_1" style="display: none;">
+<div class="school_years school_type_years">
+<div class="control-group hidden profile_categorizations_start_year"><div class="controls"><input class="hidden start_year" id="profile_categorizations_attributes_0_start_year" name="profile[categorizations_attributes][0][start_year]" type="hidden" value="0" disabled="disabled"></div></div>
+<div class="control-group hidden profile_categorizations_end_year"><div class="controls"><input class="hidden end_year" id="profile_categorizations_attributes_0_end_year" name="profile[categorizations_attributes][0][end_year]" type="hidden" disabled="disabled"></div></div>
+<input id="max_years" name="max_years" type="hidden" value="7" disabled="disabled">
+<label class="control-label"><font><font>
+Groups / classes:
+</font></font></label>
+<div class="controls">
+<div class="slider age-slider"></div>
+<div class="age"></div>
+<br>
+</div>
+</div>
+<div class="school_levels">
+</div>
+<div class="disciplines" style="display: none;">
+<div class="control-group select optional profile_categorizations_discipline"><label class="select optional control-label" for="profile_categorizations_attributes_0_discipline_id"><font><font>Study</font></font></label><div class="controls"><select class="select optional discipline_select" id="profile_categorizations_attributes_0_discipline_id" name="profile[categorizations_attributes][0][discipline_id]" disabled="disabled"><option value=""><font><font>All subjects</font></font></option>
+<option value="1"><font><font>Count</font></font></option>
+<option value="2"><font><font>Language</font></font></option>
+<option value="3"><font><font>World Orientation</font></font></option>
+<option value="4"><font><font>Art and culture</font></font></option>
+<option value="5"><font><font>English</font></font></option>
+<option value="6"><font><font>Physical education</font></font></option></select></div></div>
+</div>
+</div>
+<div class="school_type school_type_2" style="display: block;">
+<div class="school_levels">
+<div class="control-group select optional profile_categorizations_school_level"><label class="select optional control-label" for="profile_categorizations_attributes_0_school_level_id"><font><font>Level</font></font></label><div class="controls"><select class="select optional school_level_select" id="profile_categorizations_attributes_0_school_level_id" name="profile[categorizations_attributes][0][school_level_id]"><option value=""><font><font>All levels</font></font></option>
+<option value="2"><font><font>VMBO framework / base</font></font></option>
+<option value="1"><font><font>VMBO mixed / theoretical</font></font></option>
+<option value="3"><font><font>HAVO</font></font></option>
+<option value="4"><font><font>VWO</font></font></option>
+<option value="5"><font><font>Gymnasium</font></font></option></select></div></div>
+<div class="school_level school_level_2" style="display: none;">
+<div class="school_years school_level_years">
+<div class="control-group hidden profile_categorizations_start_year"><div class="controls"><input class="hidden start_year" id="profile_categorizations_attributes_0_start_year" name="profile[categorizations_attributes][0][start_year]" type="hidden" value="0" disabled="disabled"></div></div>
+<div class="control-group hidden profile_categorizations_end_year"><div class="controls"><input class="hidden end_year" id="profile_categorizations_attributes_0_end_year" name="profile[categorizations_attributes][0][end_year]" type="hidden" disabled="disabled"></div></div>
+<input id="max_years" name="max_years" type="hidden" value="3" disabled="disabled">
+<label class="control-label"><font><font>
+Groups / classes:
+</font></font></label>
+<div class="controls">
+<div class="slider age-slider"></div>
+<div class="age"></div>
+<br>
+</div>
+</div>
+<div class="school_level_disciplines" style="display: none;">
+<div class="control-group select optional profile_categorizations_discipline"><label class="select optional control-label" for="profile_categorizations_attributes_0_discipline_id"><font><font>Study</font></font></label><div class="controls"><select class="select optional discipline_select" id="profile_categorizations_attributes_0_discipline_id" name="profile[categorizations_attributes][0][discipline_id]" disabled="disabled"><option value=""><font><font>All subjects</font></font></option>
+<option value="34"><font><font>German</font></font></option>
+<option value="25"><font><font>Man and nature</font></font></option>
+<option value="88"><font><font>People and Society</font></font></option>
+<option value="30"><font><font>Chemistry</font></font></option>
+<option value="35"><font><font>Art and culture</font></font></option>
+<option value="26"><font><font>Geography</font></font></option>
+<option value="93"><font><font>Sociology</font></font></option>
+<option value="31"><font><font>Economy</font></font></option>
+<option value="36"><font><font>Music</font></font></option>
+<option value="27"><font><font>History</font></font></option>
+<option value="32"><font><font>English</font></font></option>
+<option value="23"><font><font>Mathematics</font></font></option>
+<option value="37"><font><font>Religion</font></font></option>
+<option value="28"><font><font>Physics</font></font></option>
+<option value="33"><font><font>French</font></font></option>
+<option value="24"><font><font>Dutch</font></font></option>
+<option value="38"><font><font>Physical education</font></font></option>
+<option value="29"><font><font>Biology</font></font></option></select></div></div>
+</div>
+</div>
+<div class="school_level school_level_1" style="display: none;">
+<div class="school_years school_level_years">
+<div class="control-group hidden profile_categorizations_start_year"><div class="controls"><input class="hidden start_year" id="profile_categorizations_attributes_0_start_year" name="profile[categorizations_attributes][0][start_year]" type="hidden" value="0" disabled="disabled"></div></div>
+<div class="control-group hidden profile_categorizations_end_year"><div class="controls"><input class="hidden end_year" id="profile_categorizations_attributes_0_end_year" name="profile[categorizations_attributes][0][end_year]" type="hidden" disabled="disabled"></div></div>
+<input id="max_years" name="max_years" type="hidden" value="3" disabled="disabled">
+<label class="control-label"><font><font>
+Groups / classes:
+</font></font></label>
+<div class="controls">
+<div class="slider age-slider"></div>
+<div class="age"></div>
+<br>
+</div>
+</div>
+<div class="school_level_disciplines" style="display: none;">
+<div class="control-group select optional profile_categorizations_discipline"><label class="select optional control-label" for="profile_categorizations_attributes_0_discipline_id"><font><font>Study</font></font></label><div class="controls"><select class="select optional discipline_select" id="profile_categorizations_attributes_0_discipline_id" name="profile[categorizations_attributes][0][discipline_id]" disabled="disabled"><option value=""><font><font>All subjects</font></font></option>
+<option value="18"><font><font>German</font></font></option>
+<option value="9"><font><font>Man and nature</font></font></option>
+<option value="89"><font><font>People and Society</font></font></option>
+<option value="14"><font><font>Chemistry</font></font></option>
+<option value="19"><font><font>Art and culture</font></font></option>
+<option value="10"><font><font>Geography</font></font></option>
+<option value="94"><font><font>Sociology</font></font></option>
+<option value="15"><font><font>Economy</font></font></option>
+<option value="20"><font><font>Music</font></font></option>
+<option value="11"><font><font>History</font></font></option>
+<option value="16"><font><font>English</font></font></option>
+<option value="7"><font><font>Mathematics</font></font></option>
+<option value="21"><font><font>Religion</font></font></option>
+<option value="12"><font><font>Physics</font></font></option>
+<option value="17"><font><font>French</font></font></option>
+<option value="8"><font><font>Dutch</font></font></option>
+<option value="22"><font><font>Physical education</font></font></option>
+<option value="13"><font><font>Biology</font></font></option></select></div></div>
+</div>
+</div>
+<div class="school_level school_level_3" style="display: none;">
+<div class="school_years school_level_years">
+<div class="control-group hidden profile_categorizations_start_year"><div class="controls"><input class="hidden start_year" id="profile_categorizations_attributes_0_start_year" name="profile[categorizations_attributes][0][start_year]" type="hidden" value="0" disabled="disabled"></div></div>
+<div class="control-group hidden profile_categorizations_end_year"><div class="controls"><input class="hidden end_year" id="profile_categorizations_attributes_0_end_year" name="profile[categorizations_attributes][0][end_year]" type="hidden" disabled="disabled"></div></div>
+<input id="max_years" name="max_years" type="hidden" value="4" disabled="disabled">
+<label class="control-label"><font><font>
+Groups / classes:
+</font></font></label>
+<div class="controls">
+<div class="slider age-slider"></div>
+<div class="age"></div>
+<br>
+</div>
+</div>
+<div class="school_level_disciplines" style="display: none;">
+<div class="control-group select optional profile_categorizations_discipline"><label class="select optional control-label" for="profile_categorizations_attributes_0_discipline_id"><font><font>Study</font></font></label><div class="controls"><select class="select optional discipline_select" id="profile_categorizations_attributes_0_discipline_id" name="profile[categorizations_attributes][0][discipline_id]" disabled="disabled"><option value=""><font><font>All subjects</font></font></option>
+<option value="50"><font><font>German</font></font></option>
+<option value="41"><font><font>Man and nature</font></font></option>
+<option value="90"><font><font>People and Society</font></font></option>
+<option value="46"><font><font>Chemistry</font></font></option>
+<option value="51"><font><font>Art and culture</font></font></option>
+<option value="42"><font><font>Geography</font></font></option>
+<option value="95"><font><font>Sociology</font></font></option>
+<option value="47"><font><font>Economy</font></font></option>
+<option value="52"><font><font>Music</font></font></option>
+<option value="43"><font><font>History</font></font></option>
+<option value="48"><font><font>English</font></font></option>
+<option value="39"><font><font>Mathematics</font></font></option>
+<option value="53"><font><font>Religion</font></font></option>
+<option value="44"><font><font>Physics</font></font></option>
+<option value="49"><font><font>French</font></font></option>
+<option value="40"><font><font>Dutch</font></font></option>
+<option value="54"><font><font>Physical education</font></font></option>
+<option value="45"><font><font>Biology</font></font></option></select></div></div>
+</div>
+</div>
+<div class="school_level school_level_4" style="display: none;">
+<div class="school_years school_level_years">
+<div class="control-group hidden profile_categorizations_start_year"><div class="controls"><input class="hidden start_year" id="profile_categorizations_attributes_0_start_year" name="profile[categorizations_attributes][0][start_year]" type="hidden" value="0" disabled="disabled"></div></div>
+<div class="control-group hidden profile_categorizations_end_year"><div class="controls"><input class="hidden end_year" id="profile_categorizations_attributes_0_end_year" name="profile[categorizations_attributes][0][end_year]" type="hidden" disabled="disabled"></div></div>
+<input id="max_years" name="max_years" type="hidden" value="5" disabled="disabled">
+<label class="control-label"><font><font>
+Groups / classes:
+</font></font></label>
+<div class="controls">
+<div class="slider age-slider"></div>
+<div class="age"></div>
+<br>
+</div>
+</div>
+<div class="school_level_disciplines" style="display: none;">
+<div class="control-group select optional profile_categorizations_discipline"><label class="select optional control-label" for="profile_categorizations_attributes_0_discipline_id"><font><font>Study</font></font></label><div class="controls"><select class="select optional discipline_select" id="profile_categorizations_attributes_0_discipline_id" name="profile[categorizations_attributes][0][discipline_id]" disabled="disabled"><option value=""><font><font>All subjects</font></font></option>
+<option value="66"><font><font>German</font></font></option>
+<option value="57"><font><font>Man and nature</font></font></option>
+<option value="91"><font><font>People and Society</font></font></option>
+<option value="62"><font><font>Chemistry</font></font></option>
+<option value="67"><font><font>Art and culture</font></font></option>
+<option value="58"><font><font>Geography</font></font></option>
+<option value="96"><font><font>Sociology</font></font></option>
+<option value="63"><font><font>Economy</font></font></option>
+<option value="68"><font><font>Music</font></font></option>
+<option value="59"><font><font>History</font></font></option>
+<option value="64"><font><font>English</font></font></option>
+<option value="55"><font><font>Mathematics</font></font></option>
+<option value="69"><font><font>Religion</font></font></option>
+<option value="60"><font><font>Physics</font></font></option>
+<option value="65"><font><font>French</font></font></option>
+<option value="56"><font><font>Dutch</font></font></option>
+<option value="70"><font><font>Physical education</font></font></option>
+<option value="61"><font><font>Biology</font></font></option></select></div></div>
+</div>
+</div>
+<div class="school_level school_level_5" style="display: none;">
+<div class="school_years school_level_years">
+<div class="control-group hidden profile_categorizations_start_year"><div class="controls"><input class="hidden start_year" id="profile_categorizations_attributes_0_start_year" name="profile[categorizations_attributes][0][start_year]" type="hidden" value="0" disabled="disabled"></div></div>
+<div class="control-group hidden profile_categorizations_end_year"><div class="controls"><input class="hidden end_year" id="profile_categorizations_attributes_0_end_year" name="profile[categorizations_attributes][0][end_year]" type="hidden" disabled="disabled"></div></div>
+<input id="max_years" name="max_years" type="hidden" value="5" disabled="disabled">
+<label class="control-label"><font><font>
+Groups / classes:
+</font></font></label>
+<div class="controls">
+<div class="slider age-slider"></div>
+<div class="age"></div>
+<br>
+</div>
+</div>
+<div class="school_level_disciplines" style="display: none;">
+<div class="control-group select optional profile_categorizations_discipline"><label class="select optional control-label" for="profile_categorizations_attributes_0_discipline_id"><font><font>Study</font></font></label><div class="controls"><select class="select optional discipline_select" id="profile_categorizations_attributes_0_discipline_id" name="profile[categorizations_attributes][0][discipline_id]" disabled="disabled"><option value=""><font><font>All subjects</font></font></option>
+<option value="82"><font><font>German</font></font></option>
+<option value="73"><font><font>Man and nature</font></font></option>
+<option value="87"><font><font>Classical Languages</font></font></option>
+<option value="78"><font><font>Chemistry</font></font></option>
+<option value="83"><font><font>Art and culture</font></font></option>
+<option value="74"><font><font>Geography</font></font></option>
+<option value="92"><font><font>People and Society</font></font></option>
+<option value="79"><font><font>Economy</font></font></option>
+<option value="84"><font><font>Music</font></font></option>
+<option value="75"><font><font>History</font></font></option>
+<option value="97"><font><font>Sociology</font></font></option>
+<option value="80"><font><font>English</font></font></option>
+<option value="71"><font><font>Mathematics</font></font></option>
+<option value="85"><font><font>Religion</font></font></option>
+<option value="76"><font><font>Physics</font></font></option>
+<option value="81"><font><font>French</font></font></option>
+<option value="72"><font><font>Dutch</font></font></option>
+<option value="86"><font><font>Physical education</font></font></option>
+<option value="77"><font><font>Biology</font></font></option></select></div></div>
+</div>
+</div>
+</div>
+<div class="disciplines" style="display: none;">
+</div>
+</div>
+<div class="school_type school_type_3" style="display: none;">
+<div class="school_levels">
+<div class="control-group select optional profile_categorizations_school_level"><label class="select optional control-label" for="profile_categorizations_attributes_0_school_level_id"><font><font>Level</font></font></label><div class="controls"><select class="select optional school_level_select" id="profile_categorizations_attributes_0_school_level_id" name="profile[categorizations_attributes][0][school_level_id]" disabled="disabled"><option value=""><font><font>All levels</font></font></option>
+<option value="8"><font><font>Mental and / or physical disabilities</font></font></option>
+<option value="9"><font><font>Behavioral and / or psychiatric problems</font></font></option>
+<option value="6"><font><font>Visual impairment</font></font></option>
+<option value="7"><font><font>Deaf, hearing impaired, speech-language problems</font></font></option></select></div></div>
+<div class="school_level school_level_8">
+<div class="school_level_disciplines" style="display: none;">
+</div>
+</div>
+<div class="school_level school_level_9">
+<div class="school_level_disciplines" style="display: none;">
+</div>
+</div>
+<div class="school_level school_level_6">
+<div class="school_level_disciplines" style="display: none;">
+</div>
+</div>
+<div class="school_level school_level_7">
+<div class="school_level_disciplines" style="display: none;">
+</div>
+</div>
+</div>
+<div class="disciplines" style="display: none;">
+</div>
+</div>
+</div>
+<input id="profile_categorizations_attributes_0_id" name="profile[categorizations_attributes][0][id]" type="hidden" value="11066"></div>
+<a href="javascript:void(0)" class="btn btn-small add_nested_fields" data-association="categorizations" data-blueprint-id="categorizations_fields_blueprint" style="margin-left: 180px; display: none;"><font><font>Add an additional category</font></font></a>
+<script>
+  (function() {
+    var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
+      _this = this;
+  
+    window.Categorization = (function() {
+      function Categorization(el) {
+        this.makeNewCategorization = __bind(this.makeNewCategorization, this);
+        this.toggleHiddenFields = __bind(this.toggleHiddenFields, this);
+        this.schoolLevelChanged = __bind(this.schoolLevelChanged, this);
+        this.disciplineChanged = __bind(this.disciplineChanged, this);
+        this.schoolTypeChanged = __bind(this.schoolTypeChanged, this);
+        this.selectedSchoolLevelDiv = __bind(this.selectedSchoolLevelDiv, this);
+        this.selectedSchoolLevelId = __bind(this.selectedSchoolLevelId, this);
+        this.selectedDisciplineDiv = __bind(this.selectedDisciplineDiv, this);
+        this.selectedDisciplineId = __bind(this.selectedDisciplineId, this);
+        this.selectedSchoolTypeDiv = __bind(this.selectedSchoolTypeDiv, this);
+        this.selectedSchoolTypeId = __bind(this.selectedSchoolTypeId, this);
+        this.firstDestroyButton = __bind(this.firstDestroyButton, this);
+        this.hideFirstDestroyButton = __bind(this.hideFirstDestroyButton, this);      this.el = el;
+        this.el.find('.school_type').hide();
+        this.el.find('.school_type_select').bind('change', this.schoolTypeChanged);
+        this.el.find('.discipline_select').bind('change', this.disciplineChanged);
+        this.el.find('.school_level_select').bind('change', this.schoolLevelChanged);
+        this.schoolTypeChanged();
+        this.hideFirstDestroyButton();
+      }
+  
+      Categorization.prototype.hideFirstDestroyButton = function() {
+        return this.firstDestroyButton().hide();
+      };
+  
+      Categorization.prototype.firstDestroyButton = function() {
+        return $(this.el.closest('form').find('.categorization:visible')[0]).parent().find('.btn-destroy');
+      };
+  
+      Categorization.prototype.selectedSchoolTypeId = function() {
+        return this.el.find('.school_type_select').val();
+      };
+  
+      Categorization.prototype.selectedSchoolTypeDiv = function() {
+        return this.el.find('.school_type_' + this.selectedSchoolTypeId());
+      };
+  
+      Categorization.prototype.selectedDisciplineId = function() {
+        return $('.discipline_select:visible', this.selectedSchoolTypeDiv()).val();
+      };
+  
+      Categorization.prototype.selectedDisciplineDiv = function() {
+        return this.el.find('.discipline_' + this.selectedDisciplineId());
+      };
+  
+      Categorization.prototype.selectedSchoolLevelId = function() {
+        return $('.school_level_select', this.selectedSchoolTypeDiv()).val();
+      };
+  
+      Categorization.prototype.selectedSchoolLevelDiv = function() {
+        return $('.school_level_' + this.selectedSchoolLevelId(), this.selectedSchoolTypeDiv());
+      };
+  
+      Categorization.prototype.schoolTypeChanged = function() {
+        this.el.find('.school_type').hide();
+        $('.school_type_years input', this.el).attr('disabled', 'disabled');
+        $('.school_level_years input', this.el).attr('disabled', 'disabled');
+        if (this.selectedSchoolTypeId()) {
+          this.selectedSchoolTypeDiv().show();
+          $('.school_type_years input', this.selectedSchoolTypeDiv()).removeAttr('disabled');
+          initAgeSlider($('.school_type_years', this.selectedSchoolTypeDiv()));
+          this.disciplineChanged();
+          this.schoolLevelChanged();
+          return this.toggleHiddenFields();
+        }
+      };
+  
+      Categorization.prototype.disciplineChanged = function(el) {
+        $('.discipline', this.selectedSchoolTypeDiv()).hide();
+        if (this.selectedDisciplineId()) {
+          this.selectedDisciplineDiv().show();
+          return this.toggleHiddenFields();
+        }
+      };
+  
+      Categorization.prototype.schoolLevelChanged = function(el) {
+        $('.school_level', this.selectedSchoolTypeDiv()).hide();
+        if (this.selectedSchoolLevelId()) {
+          this.selectedSchoolTypeDiv().show();
+          this.selectedSchoolLevelDiv().show();
+          $('.school_type_years input', this.selectedSchoolTypeDiv()).attr('disabled', 'disabled');
+          $('.school_level_years input', this.selectedSchoolLevelDiv()).removeAttr('disabled');
+          initAgeSlider($('.school_years', this.selectedSchoolLevelDiv()));
+          this.disciplineChanged();
+          return this.toggleHiddenFields();
+        }
+      };
+  
+      Categorization.prototype.toggleHiddenFields = function() {
+        this.el.find('select:visible').removeAttr('disabled');
+        return this.el.find('select:hidden').attr('disabled', 'disabled');
+      };
+  
+      Categorization.prototype.makeNewCategorization = function() {
+        var el, elements, new_pattern, pattern, _i, _len;
+  
+        console.info("jo");
+        elements = this.el.find('input, select');
+        pattern = /app\[categorizations_attributes\]\[[a-zA-Z0-9_]*\]/;
+        new_pattern = "app[categorizations_attributes][new_" + (new Date()).getTime() + "]";
+        for (_i = 0, _len = elements.length; _i < _len; _i++) {
+          el = elements[_i];
+          $(el).attr('name', $(el).attr('name').replace(pattern, new_pattern));
+        }
+        return $("input[name*='[id]']", this.el.parent()).remove();
+      };
+  
+      return Categorization;
+  
+    })();
+  
+    window.initCategorization = function() {
+      var e, _i, _len, _ref;
+  
+      _ref = $('.categorization:visible');
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        e = _ref[_i];
+        new Categorization($(e));
+      }
+      return $(document).on('nested:fieldAdded', function(e) {
+        return new Categorization($(e.field[0]));
+      });
+    };
+  
+    $(document).bind('page:change', initCategorization);
+  
+    $(window).ready(initCategorization);
+  
+  }).call(this);
+</script>
+
+</div>
+<style>
+  .school {
+    display: none;
+  }
+  input[for='profile_function_different'] {
+    display: none;
+  }
+  .function_different_wrapper {   
+    margin-top: -50px;
+    margin-left: 150px;
+  }
+</style>
+<script>
+  (function() {
+    var hideDisciplines, init, setFunctionToggle, setSchoolToggle,
+      _this = this;
+  
+    setSchoolToggle = function() {
+      var $el, i, show_discipline, show_school, _i, _j, _results;
+  
+      show_school = false;
+      show_discipline = false;
+      for (i = _i = 0; _i <= 3; i = ++_i) {
+        $el = $($('input[name="profile[function_id]"]')[i]);
+        if ($el.prop('checked') && (parseInt($el.attr('value')) === 1 || parseInt($el.attr('value')) === 4)) {
+          show_discipline = true;
+          $('.add_nested_fields').show();
+        }
+        if ($el.prop('checked') && (parseInt($el.attr('value')) === 1 || parseInt($el.attr('value')) === 2 || parseInt($el.attr('value')) === 4)) {
+          show_school = true;
+        }
+      }
+      $('.school').toggle(show_school);
+      $('.discipline_wrapper').toggle(show_discipline);
+      _results = [];
+      for (i = _j = 0; _j <= 2; i = ++_j) {
+        $el = $($('input[name="profile[function_id]"]')[i]);
+        if ($el.prop('checked') && (parseInt($el.attr('value')) === 2)) {
+          $('.school_type_disciplines').hide();
+          _results.push($('.add_nested_fields').hide());
+        } else {
+          _results.push(void 0);
+        }
+      }
+      return _results;
+    };
+  
+    setFunctionToggle = function(e) {
+      var $el;
+  
+      $el = $('input[name="profile[function_id]"][value="-1"]');
+      if ($el.prop('checked')) {
+        return $('.function_different_wrapper input').attr('disabled', false);
+      } else {
+        $('.function_different_wrapper input').attr('disabled', true);
+        return $('.function_different_wrapper input').attr('value', '');
+      }
+    };
+  
+    hideDisciplines = function() {
+      if ($('input[name="profile[function_id]"][value="2"]').prop('checked')) {
+        $('.disciplines').hide();
+        return $('.school_level_disciplines').hide();
+      } else {
+        $('.disciplines').show();
+        return $('.school_level_disciplines').show();
+      }
+    };
+  
+    $('.school_type_select').live('change', hideDisciplines);
+  
+    $(document).bind('page:change', init);
+  
+    init = function() {
+      setSchoolToggle();
+      setFunctionToggle();
+      hideDisciplines();
+      return $('input[name="profile[function_id]"]').change(function(e) {
+        setSchoolToggle();
+        setFunctionToggle();
+        hideDisciplines();
+        return window.initCategorization();
+      });
+    };
+  
+    init();
+  
+  }).call(this);
+</script>
+
+<div class="form-actions"><font><font><input class="btn-submit btn" name="commit" type="submit" value="Save Changes"></font></font></div>
+<div data-blueprint="&lt;div class=&quot;fields&quot;&gt;&lt;!-- - raise f.associations.inspect --&gt;
+&lt;!-- - raise key.inspect --&gt;
+&lt;div class='categorization'&gt;
+&lt;input id=&quot;profile_categorizations_attributes_new_categorizations__destroy&quot; name=&quot;profile[categorizations_attributes][new_categorizations][_destroy]&quot; type=&quot;hidden&quot; value=&quot;false&quot; /&gt;&lt;a href=&quot;javascript:void(0)&quot; class=&quot;btn btn-small btn-destroy remove_nested_fields&quot; data-association=&quot;categorizations&quot; style=&quot;float:right; margin-right: 20px;&quot;&gt;&lt;i class='icon-trash'&gt;&lt;/i&gt;
+&lt;/a&gt;
+&lt;div class=&quot;control-group select required profile_categorizations_school_type&quot;&gt;&lt;label class=&quot;select required control-label&quot; for=&quot;profile_categorizations_attributes_new_categorizations_school_type_id&quot;&gt;&lt;abbr title=&quot;verplicht&quot;&gt;*&lt;/abbr&gt; Sector&lt;/label&gt;&lt;div class=&quot;controls&quot;&gt;&lt;select class=&quot;select required school_type_select&quot; id=&quot;profile_categorizations_attributes_new_categorizations_school_type_id&quot; name=&quot;profile[categorizations_attributes][new_categorizations][school_type_id]&quot;&gt;&lt;option value=&quot;&quot;&gt;&lt;/option&gt;
+&lt;option value=&quot;1&quot;&gt;Primair onderwijs&lt;/option&gt;
+&lt;option value=&quot;2&quot;&gt;Voortgezet onderwijs&lt;/option&gt;
+&lt;option value=&quot;3&quot;&gt;Speciaal onderwijs&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class='school_type school_type_1'&gt;
+&lt;div class='school_years school_type_years'&gt;
+&lt;div class=&quot;control-group hidden profile_categorizations_start_year&quot;&gt;&lt;div class=&quot;controls&quot;&gt;&lt;input class=&quot;hidden start_year&quot; id=&quot;profile_categorizations_attributes_new_categorizations_start_year&quot; name=&quot;profile[categorizations_attributes][new_categorizations][start_year]&quot; type=&quot;hidden&quot; /&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;control-group hidden profile_categorizations_end_year&quot;&gt;&lt;div class=&quot;controls&quot;&gt;&lt;input class=&quot;hidden end_year&quot; id=&quot;profile_categorizations_attributes_new_categorizations_end_year&quot; name=&quot;profile[categorizations_attributes][new_categorizations][end_year]&quot; type=&quot;hidden&quot; /&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;input id=&quot;max_years&quot; name=&quot;max_years&quot; type=&quot;hidden&quot; value=&quot;7&quot; /&gt;
+&lt;label class='control-label'&gt;
+Groepen/klassen:
+&lt;/label&gt;
+&lt;div class='controls'&gt;
+&lt;div class='slider age-slider'&gt;&lt;/div&gt;
+&lt;div class='age'&gt;&lt;/div&gt;
+&lt;br&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class='school_levels'&gt;
+&lt;/div&gt;
+&lt;div class='disciplines'&gt;
+&lt;div class=&quot;control-group select optional profile_categorizations_discipline&quot;&gt;&lt;label class=&quot;select optional control-label&quot; for=&quot;profile_categorizations_attributes_new_categorizations_discipline_id&quot;&gt;Vakgebied&lt;/label&gt;&lt;div class=&quot;controls&quot;&gt;&lt;select class=&quot;select optional discipline_select&quot; id=&quot;profile_categorizations_attributes_new_categorizations_discipline_id&quot; name=&quot;profile[categorizations_attributes][new_categorizations][discipline_id]&quot;&gt;&lt;option value=&quot;&quot;&gt;Alle vakken&lt;/option&gt;
+&lt;option value=&quot;1&quot;&gt;Rekenen&lt;/option&gt;
+&lt;option value=&quot;2&quot;&gt;Taal&lt;/option&gt;
+&lt;option value=&quot;3&quot;&gt;Wereldorientatie&lt;/option&gt;
+&lt;option value=&quot;4&quot;&gt;Kunst en cultuur&lt;/option&gt;
+&lt;option value=&quot;5&quot;&gt;Engels&lt;/option&gt;
+&lt;option value=&quot;6&quot;&gt;Bewegingsonderwijs&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class='school_type school_type_2'&gt;
+&lt;div class='school_levels'&gt;
+&lt;div class=&quot;control-group select optional profile_categorizations_school_level&quot;&gt;&lt;label class=&quot;select optional control-label&quot; for=&quot;profile_categorizations_attributes_new_categorizations_school_level_id&quot;&gt;Niveau&lt;/label&gt;&lt;div class=&quot;controls&quot;&gt;&lt;select class=&quot;select optional school_level_select&quot; id=&quot;profile_categorizations_attributes_new_categorizations_school_level_id&quot; name=&quot;profile[categorizations_attributes][new_categorizations][school_level_id]&quot;&gt;&lt;option value=&quot;&quot;&gt;Alle niveau&amp;#x27;s&lt;/option&gt;
+&lt;option value=&quot;2&quot;&gt;VMBO kader/basis&lt;/option&gt;
+&lt;option value=&quot;1&quot;&gt;VMBO gemengd/theoretisch&lt;/option&gt;
+&lt;option value=&quot;3&quot;&gt;HAVO&lt;/option&gt;
+&lt;option value=&quot;4&quot;&gt;VWO&lt;/option&gt;
+&lt;option value=&quot;5&quot;&gt;Gymnasium&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class='school_level school_level_2'&gt;
+&lt;div class='school_years school_level_years'&gt;
+&lt;div class=&quot;control-group hidden profile_categorizations_start_year&quot;&gt;&lt;div class=&quot;controls&quot;&gt;&lt;input class=&quot;hidden start_year&quot; id=&quot;profile_categorizations_attributes_new_categorizations_start_year&quot; name=&quot;profile[categorizations_attributes][new_categorizations][start_year]&quot; type=&quot;hidden&quot; /&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;control-group hidden profile_categorizations_end_year&quot;&gt;&lt;div class=&quot;controls&quot;&gt;&lt;input class=&quot;hidden end_year&quot; id=&quot;profile_categorizations_attributes_new_categorizations_end_year&quot; name=&quot;profile[categorizations_attributes][new_categorizations][end_year]&quot; type=&quot;hidden&quot; /&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;input id=&quot;max_years&quot; name=&quot;max_years&quot; type=&quot;hidden&quot; value=&quot;3&quot; /&gt;
+&lt;label class='control-label'&gt;
+Groepen/klassen:
+&lt;/label&gt;
+&lt;div class='controls'&gt;
+&lt;div class='slider age-slider'&gt;&lt;/div&gt;
+&lt;div class='age'&gt;&lt;/div&gt;
+&lt;br&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class='school_level_disciplines'&gt;
+&lt;div class=&quot;control-group select optional profile_categorizations_discipline&quot;&gt;&lt;label class=&quot;select optional control-label&quot; for=&quot;profile_categorizations_attributes_new_categorizations_discipline_id&quot;&gt;Vakgebied&lt;/label&gt;&lt;div class=&quot;controls&quot;&gt;&lt;select class=&quot;select optional discipline_select&quot; id=&quot;profile_categorizations_attributes_new_categorizations_discipline_id&quot; name=&quot;profile[categorizations_attributes][new_categorizations][discipline_id]&quot;&gt;&lt;option value=&quot;&quot;&gt;Alle vakken&lt;/option&gt;
+&lt;option value=&quot;34&quot;&gt;Duits&lt;/option&gt;
+&lt;option value=&quot;25&quot;&gt;Mens en natuur&lt;/option&gt;
+&lt;option value=&quot;88&quot;&gt;Mens en Maatschappij&lt;/option&gt;
+&lt;option value=&quot;30&quot;&gt;Scheikunde&lt;/option&gt;
+&lt;option value=&quot;35&quot;&gt;Kunst en cultuur&lt;/option&gt;
+&lt;option value=&quot;26&quot;&gt;Aardrijkskunde&lt;/option&gt;
+&lt;option value=&quot;93&quot;&gt;Maatschappijleer&lt;/option&gt;
+&lt;option value=&quot;31&quot;&gt;Economie&lt;/option&gt;
+&lt;option value=&quot;36&quot;&gt;Muziek&lt;/option&gt;
+&lt;option value=&quot;27&quot;&gt;Geschiedenis&lt;/option&gt;
+&lt;option value=&quot;32&quot;&gt;Engels&lt;/option&gt;
+&lt;option value=&quot;23&quot;&gt;Wiskunde&lt;/option&gt;
+&lt;option value=&quot;37&quot;&gt;Godsdienst&lt;/option&gt;
+&lt;option value=&quot;28&quot;&gt;Natuurkunde&lt;/option&gt;
+&lt;option value=&quot;33&quot;&gt;Frans&lt;/option&gt;
+&lt;option value=&quot;24&quot;&gt;Nederlands&lt;/option&gt;
+&lt;option value=&quot;38&quot;&gt;Lichamelijke opvoeding&lt;/option&gt;
+&lt;option value=&quot;29&quot;&gt;Biologie&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class='school_level school_level_1'&gt;
+&lt;div class='school_years school_level_years'&gt;
+&lt;div class=&quot;control-group hidden profile_categorizations_start_year&quot;&gt;&lt;div class=&quot;controls&quot;&gt;&lt;input class=&quot;hidden start_year&quot; id=&quot;profile_categorizations_attributes_new_categorizations_start_year&quot; name=&quot;profile[categorizations_attributes][new_categorizations][start_year]&quot; type=&quot;hidden&quot; /&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;control-group hidden profile_categorizations_end_year&quot;&gt;&lt;div class=&quot;controls&quot;&gt;&lt;input class=&quot;hidden end_year&quot; id=&quot;profile_categorizations_attributes_new_categorizations_end_year&quot; name=&quot;profile[categorizations_attributes][new_categorizations][end_year]&quot; type=&quot;hidden&quot; /&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;input id=&quot;max_years&quot; name=&quot;max_years&quot; type=&quot;hidden&quot; value=&quot;3&quot; /&gt;
+&lt;label class='control-label'&gt;
+Groepen/klassen:
+&lt;/label&gt;
+&lt;div class='controls'&gt;
+&lt;div class='slider age-slider'&gt;&lt;/div&gt;
+&lt;div class='age'&gt;&lt;/div&gt;
+&lt;br&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class='school_level_disciplines'&gt;
+&lt;div class=&quot;control-group select optional profile_categorizations_discipline&quot;&gt;&lt;label class=&quot;select optional control-label&quot; for=&quot;profile_categorizations_attributes_new_categorizations_discipline_id&quot;&gt;Vakgebied&lt;/label&gt;&lt;div class=&quot;controls&quot;&gt;&lt;select class=&quot;select optional discipline_select&quot; id=&quot;profile_categorizations_attributes_new_categorizations_discipline_id&quot; name=&quot;profile[categorizations_attributes][new_categorizations][discipline_id]&quot;&gt;&lt;option value=&quot;&quot;&gt;Alle vakken&lt;/option&gt;
+&lt;option value=&quot;18&quot;&gt;Duits&lt;/option&gt;
+&lt;option value=&quot;9&quot;&gt;Mens en natuur&lt;/option&gt;
+&lt;option value=&quot;89&quot;&gt;Mens en Maatschappij&lt;/option&gt;
+&lt;option value=&quot;14&quot;&gt;Scheikunde&lt;/option&gt;
+&lt;option value=&quot;19&quot;&gt;Kunst en cultuur&lt;/option&gt;
+&lt;option value=&quot;10&quot;&gt;Aardrijkskunde&lt;/option&gt;
+&lt;option value=&quot;94&quot;&gt;Maatschappijleer&lt;/option&gt;
+&lt;option value=&quot;15&quot;&gt;Economie&lt;/option&gt;
+&lt;option value=&quot;20&quot;&gt;Muziek&lt;/option&gt;
+&lt;option value=&quot;11&quot;&gt;Geschiedenis&lt;/option&gt;
+&lt;option value=&quot;16&quot;&gt;Engels&lt;/option&gt;
+&lt;option value=&quot;7&quot;&gt;Wiskunde&lt;/option&gt;
+&lt;option value=&quot;21&quot;&gt;Godsdienst&lt;/option&gt;
+&lt;option value=&quot;12&quot;&gt;Natuurkunde&lt;/option&gt;
+&lt;option value=&quot;17&quot;&gt;Frans&lt;/option&gt;
+&lt;option value=&quot;8&quot;&gt;Nederlands&lt;/option&gt;
+&lt;option value=&quot;22&quot;&gt;Lichamelijke opvoeding&lt;/option&gt;
+&lt;option value=&quot;13&quot;&gt;Biologie&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class='school_level school_level_3'&gt;
+&lt;div class='school_years school_level_years'&gt;
+&lt;div class=&quot;control-group hidden profile_categorizations_start_year&quot;&gt;&lt;div class=&quot;controls&quot;&gt;&lt;input class=&quot;hidden start_year&quot; id=&quot;profile_categorizations_attributes_new_categorizations_start_year&quot; name=&quot;profile[categorizations_attributes][new_categorizations][start_year]&quot; type=&quot;hidden&quot; /&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;control-group hidden profile_categorizations_end_year&quot;&gt;&lt;div class=&quot;controls&quot;&gt;&lt;input class=&quot;hidden end_year&quot; id=&quot;profile_categorizations_attributes_new_categorizations_end_year&quot; name=&quot;profile[categorizations_attributes][new_categorizations][end_year]&quot; type=&quot;hidden&quot; /&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;input id=&quot;max_years&quot; name=&quot;max_years&quot; type=&quot;hidden&quot; value=&quot;4&quot; /&gt;
+&lt;label class='control-label'&gt;
+Groepen/klassen:
+&lt;/label&gt;
+&lt;div class='controls'&gt;
+&lt;div class='slider age-slider'&gt;&lt;/div&gt;
+&lt;div class='age'&gt;&lt;/div&gt;
+&lt;br&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class='school_level_disciplines'&gt;
+&lt;div class=&quot;control-group select optional profile_categorizations_discipline&quot;&gt;&lt;label class=&quot;select optional control-label&quot; for=&quot;profile_categorizations_attributes_new_categorizations_discipline_id&quot;&gt;Vakgebied&lt;/label&gt;&lt;div class=&quot;controls&quot;&gt;&lt;select class=&quot;select optional discipline_select&quot; id=&quot;profile_categorizations_attributes_new_categorizations_discipline_id&quot; name=&quot;profile[categorizations_attributes][new_categorizations][discipline_id]&quot;&gt;&lt;option value=&quot;&quot;&gt;Alle vakken&lt;/option&gt;
+&lt;option value=&quot;50&quot;&gt;Duits&lt;/option&gt;
+&lt;option value=&quot;41&quot;&gt;Mens en natuur&lt;/option&gt;
+&lt;option value=&quot;90&quot;&gt;Mens en Maatschappij&lt;/option&gt;
+&lt;option value=&quot;46&quot;&gt;Scheikunde&lt;/option&gt;
+&lt;option value=&quot;51&quot;&gt;Kunst en cultuur&lt;/option&gt;
+&lt;option value=&quot;42&quot;&gt;Aardrijkskunde&lt;/option&gt;
+&lt;option value=&quot;95&quot;&gt;Maatschappijleer&lt;/option&gt;
+&lt;option value=&quot;47&quot;&gt;Economie&lt;/option&gt;
+&lt;option value=&quot;52&quot;&gt;Muziek&lt;/option&gt;
+&lt;option value=&quot;43&quot;&gt;Geschiedenis&lt;/option&gt;
+&lt;option value=&quot;48&quot;&gt;Engels&lt;/option&gt;
+&lt;option value=&quot;39&quot;&gt;Wiskunde&lt;/option&gt;
+&lt;option value=&quot;53&quot;&gt;Godsdienst&lt;/option&gt;
+&lt;option value=&quot;44&quot;&gt;Natuurkunde&lt;/option&gt;
+&lt;option value=&quot;49&quot;&gt;Frans&lt;/option&gt;
+&lt;option value=&quot;40&quot;&gt;Nederlands&lt;/option&gt;
+&lt;option value=&quot;54&quot;&gt;Lichamelijke opvoeding&lt;/option&gt;
+&lt;option value=&quot;45&quot;&gt;Biologie&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class='school_level school_level_4'&gt;
+&lt;div class='school_years school_level_years'&gt;
+&lt;div class=&quot;control-group hidden profile_categorizations_start_year&quot;&gt;&lt;div class=&quot;controls&quot;&gt;&lt;input class=&quot;hidden start_year&quot; id=&quot;profile_categorizations_attributes_new_categorizations_start_year&quot; name=&quot;profile[categorizations_attributes][new_categorizations][start_year]&quot; type=&quot;hidden&quot; /&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;control-group hidden profile_categorizations_end_year&quot;&gt;&lt;div class=&quot;controls&quot;&gt;&lt;input class=&quot;hidden end_year&quot; id=&quot;profile_categorizations_attributes_new_categorizations_end_year&quot; name=&quot;profile[categorizations_attributes][new_categorizations][end_year]&quot; type=&quot;hidden&quot; /&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;input id=&quot;max_years&quot; name=&quot;max_years&quot; type=&quot;hidden&quot; value=&quot;5&quot; /&gt;
+&lt;label class='control-label'&gt;
+Groepen/klassen:
+&lt;/label&gt;
+&lt;div class='controls'&gt;
+&lt;div class='slider age-slider'&gt;&lt;/div&gt;
+&lt;div class='age'&gt;&lt;/div&gt;
+&lt;br&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class='school_level_disciplines'&gt;
+&lt;div class=&quot;control-group select optional profile_categorizations_discipline&quot;&gt;&lt;label class=&quot;select optional control-label&quot; for=&quot;profile_categorizations_attributes_new_categorizations_discipline_id&quot;&gt;Vakgebied&lt;/label&gt;&lt;div class=&quot;controls&quot;&gt;&lt;select class=&quot;select optional discipline_select&quot; id=&quot;profile_categorizations_attributes_new_categorizations_discipline_id&quot; name=&quot;profile[categorizations_attributes][new_categorizations][discipline_id]&quot;&gt;&lt;option value=&quot;&quot;&gt;Alle vakken&lt;/option&gt;
+&lt;option value=&quot;66&quot;&gt;Duits&lt;/option&gt;
+&lt;option value=&quot;57&quot;&gt;Mens en natuur&lt;/option&gt;
+&lt;option value=&quot;91&quot;&gt;Mens en Maatschappij&lt;/option&gt;
+&lt;option value=&quot;62&quot;&gt;Scheikunde&lt;/option&gt;
+&lt;option value=&quot;67&quot;&gt;Kunst en cultuur&lt;/option&gt;
+&lt;option value=&quot;58&quot;&gt;Aardrijkskunde&lt;/option&gt;
+&lt;option value=&quot;96&quot;&gt;Maatschappijleer&lt;/option&gt;
+&lt;option value=&quot;63&quot;&gt;Economie&lt;/option&gt;
+&lt;option value=&quot;68&quot;&gt;Muziek&lt;/option&gt;
+&lt;option value=&quot;59&quot;&gt;Geschiedenis&lt;/option&gt;
+&lt;option value=&quot;64&quot;&gt;Engels&lt;/option&gt;
+&lt;option value=&quot;55&quot;&gt;Wiskunde&lt;/option&gt;
+&lt;option value=&quot;69&quot;&gt;Godsdienst&lt;/option&gt;
+&lt;option value=&quot;60&quot;&gt;Natuurkunde&lt;/option&gt;
+&lt;option value=&quot;65&quot;&gt;Frans&lt;/option&gt;
+&lt;option value=&quot;56&quot;&gt;Nederlands&lt;/option&gt;
+&lt;option value=&quot;70&quot;&gt;Lichamelijke opvoeding&lt;/option&gt;
+&lt;option value=&quot;61&quot;&gt;Biologie&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class='school_level school_level_5'&gt;
+&lt;div class='school_years school_level_years'&gt;
+&lt;div class=&quot;control-group hidden profile_categorizations_start_year&quot;&gt;&lt;div class=&quot;controls&quot;&gt;&lt;input class=&quot;hidden start_year&quot; id=&quot;profile_categorizations_attributes_new_categorizations_start_year&quot; name=&quot;profile[categorizations_attributes][new_categorizations][start_year]&quot; type=&quot;hidden&quot; /&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;control-group hidden profile_categorizations_end_year&quot;&gt;&lt;div class=&quot;controls&quot;&gt;&lt;input class=&quot;hidden end_year&quot; id=&quot;profile_categorizations_attributes_new_categorizations_end_year&quot; name=&quot;profile[categorizations_attributes][new_categorizations][end_year]&quot; type=&quot;hidden&quot; /&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;input id=&quot;max_years&quot; name=&quot;max_years&quot; type=&quot;hidden&quot; value=&quot;5&quot; /&gt;
+&lt;label class='control-label'&gt;
+Groepen/klassen:
+&lt;/label&gt;
+&lt;div class='controls'&gt;
+&lt;div class='slider age-slider'&gt;&lt;/div&gt;
+&lt;div class='age'&gt;&lt;/div&gt;
+&lt;br&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class='school_level_disciplines'&gt;
+&lt;div class=&quot;control-group select optional profile_categorizations_discipline&quot;&gt;&lt;label class=&quot;select optional control-label&quot; for=&quot;profile_categorizations_attributes_new_categorizations_discipline_id&quot;&gt;Vakgebied&lt;/label&gt;&lt;div class=&quot;controls&quot;&gt;&lt;select class=&quot;select optional discipline_select&quot; id=&quot;profile_categorizations_attributes_new_categorizations_discipline_id&quot; name=&quot;profile[categorizations_attributes][new_categorizations][discipline_id]&quot;&gt;&lt;option value=&quot;&quot;&gt;Alle vakken&lt;/option&gt;
+&lt;option value=&quot;82&quot;&gt;Duits&lt;/option&gt;
+&lt;option value=&quot;73&quot;&gt;Mens en natuur&lt;/option&gt;
+&lt;option value=&quot;87&quot;&gt;Klassieke talen&lt;/option&gt;
+&lt;option value=&quot;78&quot;&gt;Scheikunde&lt;/option&gt;
+&lt;option value=&quot;83&quot;&gt;Kunst en cultuur&lt;/option&gt;
+&lt;option value=&quot;74&quot;&gt;Aardrijkskunde&lt;/option&gt;
+&lt;option value=&quot;92&quot;&gt;Mens en Maatschappij&lt;/option&gt;
+&lt;option value=&quot;79&quot;&gt;Economie&lt;/option&gt;
+&lt;option value=&quot;84&quot;&gt;Muziek&lt;/option&gt;
+&lt;option value=&quot;75&quot;&gt;Geschiedenis&lt;/option&gt;
+&lt;option value=&quot;97&quot;&gt;Maatschappijleer&lt;/option&gt;
+&lt;option value=&quot;80&quot;&gt;Engels&lt;/option&gt;
+&lt;option value=&quot;71&quot;&gt;Wiskunde&lt;/option&gt;
+&lt;option value=&quot;85&quot;&gt;Godsdienst&lt;/option&gt;
+&lt;option value=&quot;76&quot;&gt;Natuurkunde&lt;/option&gt;
+&lt;option value=&quot;81&quot;&gt;Frans&lt;/option&gt;
+&lt;option value=&quot;72&quot;&gt;Nederlands&lt;/option&gt;
+&lt;option value=&quot;86&quot;&gt;Lichamelijke opvoeding&lt;/option&gt;
+&lt;option value=&quot;77&quot;&gt;Biologie&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class='disciplines'&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class='school_type school_type_3'&gt;
+&lt;div class='school_levels'&gt;
+&lt;div class=&quot;control-group select optional profile_categorizations_school_level&quot;&gt;&lt;label class=&quot;select optional control-label&quot; for=&quot;profile_categorizations_attributes_new_categorizations_school_level_id&quot;&gt;Niveau&lt;/label&gt;&lt;div class=&quot;controls&quot;&gt;&lt;select class=&quot;select optional school_level_select&quot; id=&quot;profile_categorizations_attributes_new_categorizations_school_level_id&quot; name=&quot;profile[categorizations_attributes][new_categorizations][school_level_id]&quot;&gt;&lt;option value=&quot;&quot;&gt;Alle niveau&amp;#x27;s&lt;/option&gt;
+&lt;option value=&quot;8&quot;&gt;Verstandelijke en/of lichamelijke handicap&lt;/option&gt;
+&lt;option value=&quot;9&quot;&gt;Gedrags- en/of psychiatrische problemen&lt;/option&gt;
+&lt;option value=&quot;6&quot;&gt;Visuele handicap&lt;/option&gt;
+&lt;option value=&quot;7&quot;&gt;Doof, slechthorend, spraak-taalproblemen&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class='school_level school_level_8'&gt;
+&lt;div class='school_level_disciplines'&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class='school_level school_level_9'&gt;
+&lt;div class='school_level_disciplines'&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class='school_level school_level_6'&gt;
+&lt;div class='school_level_disciplines'&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class='school_level school_level_7'&gt;
+&lt;div class='school_level_disciplines'&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class='disciplines'&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;" id="categorizations_fields_blueprint" style="display: none"></div></form>
+
+</div>
+
+</div>
+</div>
+</div>
+<div class="clearfooter"></div>
+</div>
+<div class="footer">
+<div class="container">
+<div class="row">
+<div class="span3">
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/waarom">Waarom Eduapp?</a></li>
+<li><a href="/wie">Voor wie?</a></li>
+<li><a href="/hoe">Hoe werkt het?</a></li>
+</ul>
+</div>
+<div class="span3">
+<ul>
+<li><a href="/over">Over ons</a></li>
+<li><a href="http://blog.eduapp.nl" target="_blank">Blog</a></li>
+<li><a href="/pers">Pers</a></li>
+<li><a href="/international">International</a></li>
+</ul>
+</div>
+<div class="span3">
+<ul>
+<li><a href="/contact">Contact</a></li>
+<li><a href="mailto:info@eduapp.nl">info@eduapp.nl</a></li>
+</ul>
+</div>
+<div class="span3">
+<ul>
+<li>
+<strong>Volg Eduapp</strong>
+</li>
+<li>
+<a href="http://www.twitter.com/EduappNL" target="_blank">
+<img alt="Social_tw" src="/assets/frontpage/social_tw-8864631c17ae432d6bebc95f29bfa75c.png">
+Twitter
+</a>
+</li>
+<li>
+<a href="http://www.facebook.com/EduappNL" target="_blank">
+<img alt="Social_fb" src="/assets/frontpage/social_fb-56456886422a698a4358040b844f7fc9.png">
+Facebook
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class="row">
+<div class="span12">
+<p>Vinden, delen en ontdekken - © Eduapp Benelux BV, 2013 - Lees hier de <a href="/terms" data-remote="true">algemene voorwaarden</a>, het <a href="/privacy" data-remote="true">privacystatement</a> en <a href="/cookie" data-remote="true">cookiestatement</a>.</p>
+</div>
+</div>
+</div>
+</div>
+
+<script type="text/javascript">if (!NREUMQ.f) { NREUMQ.f=function() {
+NREUMQ.push(["load",new Date().getTime()]);
+var e=document.createElement("script");
+e.type="text/javascript";
+e.src=(("http:"===document.location.protocol)?"http:":"https:") + "//" +
+  "js-agent.newrelic.com/nr-100.js";
+document.body.appendChild(e);
+if(NREUMQ.a)NREUMQ.a();
+};
+NREUMQ.a=window.onload;window.onload=NREUMQ.f;
+};
+NREUMQ.push(["nrfj","beacon-3.newrelic.com","b37cd2fc59","1307970","dFZaTEQKCFsGQRxFAUNNXVZRFktHEVxVXwhSShtLXgoT",0,523,new Date().getTime(),"","","","",""]);</script>
+
+</body>

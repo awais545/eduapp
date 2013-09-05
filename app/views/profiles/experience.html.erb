@@ -1,0 +1,52 @@
+<div class="container main_container">
+
+	<div class="row nav_back">
+		<div class="span2">
+			<ul class="nav nav-list">
+				<li class=<%= "active" if params[:action] == "index" %>><%= link_to "Profile", profiles_path %></li>
+				<li class=<%= "active" if params[:action] == "about" %>><%= link_to "About", about_profiles_path %></li>
+				<li class=<%= "active" if params[:action] == "education" %>><%= link_to "Education", education_profiles_path %></li>
+				<li class=<%= "active" if params[:action] == "experience" %>><%= link_to "Experience", experience_profiles_path %></li>
+				<li class=<%= "active" if params[:action] == "commitment" %>><%= link_to "Commitment", commitment_profiles_path %></li>
+			</ul>
+
+		</div>
+		<div class="span10 main">
+			<div class="content">
+				<h1>Experiences</h1>
+				<hr>
+				<%= render 'layouts/messages' %>
+				<% current_user.experiences.each do |experience| %>
+				<h2><%= experience.name %></h2>
+				<p>Title: <strong><%= experience.title %></strong></p>
+				<p>Period: <strong><%= experience.start_year %> - <%= experience.end_year %></strong></p>
+				<p>Remarks: <strong><%= experience.remarks %></strong></p>
+				<hr>
+				<% end %>
+
+				<h2>Add experience</h2>
+				
+
+				<%= simple_form_for(current_user.experiences.build, :html => { :method => :post, :class => 'form-horizontal form-vertical' }) do |e| %>
+				<%= e.error_notification %>
+				<%= display_base_errors current_user %>
+
+
+				<%= e.input :name, :autofocus => true, :required => true %>
+				<%= e.input :title, :required => true %>
+				<%= e.input :start_year, :required => true %>
+				<%= e.input :end_year, :required => true %>
+				<%= e.input :remarks, :input_html => { :cols => 50, :rows => 3 }  %>
+
+
+				<div class="form-actions">
+					<%= e.button :submit, 'Add experience', :class => 'btn-submit btn' %>
+				</div>
+
+				<% end %>
+
+			</div>
+
+		</div>
+	</div>
+</div>

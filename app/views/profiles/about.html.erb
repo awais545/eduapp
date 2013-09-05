@@ -1,0 +1,44 @@
+<div class="container main_container">
+
+	<div class="row nav_back">
+		<div class="span2">
+			<ul class="nav nav-list">
+				<li class=<%= "active" if params[:action] == "index" %>><%= link_to "Profile", profiles_path %></li>
+				<li class=<%= "active" if params[:action] == "about" %>><%= link_to "About", about_profiles_path %></li>
+				<li class=<%= "active" if params[:action] == "education" %>><%= link_to "Education", education_profiles_path %></li>
+				<li class=<%= "active" if params[:action] == "experience" %>><%= link_to "Experience", experience_profiles_path %></li>
+				<li class=<%= "active" if params[:action] == "commitment" %>><%= link_to "Commitment", commitment_profiles_path %></li>
+			</ul>
+
+		</div>
+		<div class="span10 main">
+			<div class="content">
+				<h1>About me</h1>
+				
+				<%= render 'layouts/messages' %>
+				
+				<%= simple_form_for(current_user, :url => profile_path(current_user), :html => { :method => :put, :class => 'form-horizontal form-vertical' }) do |f| %>
+				<%= f.error_notification %>
+				<%= display_base_errors current_user %>
+
+				<%= f.input :about, :class => "inline" do %>
+				<%= f.input_field :about, :rows => 5  %>
+				<%= content_tag :p, "This is your chance to tell your students about yourself.", :class => "help-block" %>
+				<% end %>
+				
+				<%= f.input :philosopfy, :class => "inline" do %>
+				<%= f.input_field :philosopfy, :rows => 5  %>
+				<%= content_tag :p, "Give a short summary of your teaching philosopfy.", :class => "help-block" %>
+				<% end %>
+				
+				<div class="form-actions">
+					<%= f.button :submit, 'Save', :class => 'btn-submit btn' %>
+				</div>
+
+				<% end %>
+
+			</div>
+
+		</div>
+	</div>
+</div>

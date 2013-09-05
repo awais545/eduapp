@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title><%= content_for?(:title) ? yield(:title) : "Eduapp" %></title>
+	<meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Eduapp" %>">
+	<%= stylesheet_link_tag "application", :media => "all" %>
+	<%= javascript_include_tag "application" %>
+	<%= csrf_meta_tags %>
+	<%= yield(:head) %>
+</head>
+<body class="two_column" data-twttr-rendered="true">
+	<div class="full_container">
+
+	<!-- Modal -->
+	<div class="hide modal" id="modal" role="dialog" tabindex="-1">
+		<div id="modal-content"></div>
+	</div>
+
+	<div class="loader"></div>
+	<div class="header">
+		<div class="container">
+			<div class="navbar pull-left">
+				<a href="/" class="brand">
+					<img alt="Eduapp_logo" src="/assets/logo_hp.png">
+				</a>
+			</div>
+			<div class="navbar navbar-right pull-right">
+				<ul class="nav">
+					<% if current_user %>
+					<li class="active profile">
+						<a class="dropdown-toggle main-nav" data-hover="dropdown" data-toggle="dropdown" href="/profielen/pupca">
+							<img alt="Thumb" src="/assets/missing_avatart_thumb.png">
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu pull-right">
+							<li>
+								<%= link_to "Profile", profiles_path %>
+							</li>
+							<li>
+								<a href="/pages/bids">Bids</a>
+							</li>
+							<li>
+								<a href="/pages/referrals">Referrals</a>
+							</li>
+							<li>
+								<%= link_to "Settings", edit_user_registration_path %>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<a href="/pages/inbox">Inbox</a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+							</li>
+						</ul>
+					</li>
+					<% end %>
+					<!-- %li=link_to t('.login', :default => 'Uitloggen'), logout_path, :method => :delete -->
+				</ul>
+			</div>
+		</div>
+	</div>
+
+
+	<%= yield %>
+
+	<div class="clearfooter"></div>
+	</div>
+	<div class="footer">
+		<div class="container">
+			<div class="row">
+				<div class="span3">
+					<ul>
+						<li><a href="/">Home</a></li>
+						<li><a href="/waarom">Waarom Eduapp?</a></li>
+						<li><a href="/wie">Voor wie?</a></li>
+						<li><a href="/hoe">Hoe werkt het?</a></li>
+					</ul>
+				</div>
+				<div class="span3">
+					<ul>
+						<li><a href="/over">Over ons</a></li>
+						<li><a href="http://blog.eduapp.nl" target="_blank">Blog</a></li>
+						<li><a href="/pers">Pers</a></li>
+						<li><a href="/international">International</a></li>
+					</ul>
+				</div>
+				<div class="span3">
+					<ul>
+						<li><a href="/contact">Contact</a></li>
+						<li><a href="mailto:info@eduapp.nl">info@eduapp.nl</a></li>
+					</ul>
+				</div>
+				<div class="span3">
+					<ul>
+						<li>
+							<strong>Volg Eduapp</strong>
+						</li>
+						<li>
+							<a href="http://www.twitter.com/EduappNL" target="_blank">
+								<img alt="Social_tw" src="/assets/social_tw.png">
+								Twitter
+							</a>
+						</li>
+						<li>
+							<a href="http://www.facebook.com/EduappNL" target="_blank">
+								<img alt="Social_fb" src="/assets/social_fb.png">
+								Facebook
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="row">
+				<div class="span12">
+					<p>Vinden, delen en ontdekken - © Eduapp Benelux BV, 2013 - Lees hier de <a href="/terms" data-remote="true">algemene voorwaarden</a>, het <a href="/privacy" data-remote="true">privacystatement</a> en <a href="/cookie" data-remote="true">cookiestatement</a>.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+</body>
+</html>
+
+
+

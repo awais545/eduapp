@@ -1,0 +1,28 @@
+<div class="container main_container">
+
+	<div class="row nav_back">
+		<div class="span2">
+			<ul class="nav nav-list">
+				<li class=<%= "active" if params[:action] == "index" %>><%= link_to "Profile", profiles_path %></li>
+				<li class=<%= "active" if params[:action] == "about" %>><%= link_to "About", about_profiles_path %></li>
+				<li class=<%= "active" if params[:action] == "education" %>><%= link_to "Education", education_profiles_path %></li>
+				<li class=<%= "active" if params[:action] == "experience" %>><%= link_to "Experience", experience_profiles_path %></li>
+				<li class=<%= "active" if params[:action] == "commitment" %>><%= link_to "Commitment", commitment_profiles_path %></li>
+			</ul>
+
+		</div>
+		<div class="span10 main">
+			<div class="content">
+				<h1>About me</h1>
+				<hr>
+				<%= render 'layouts/messages' %>
+				
+				<h2>Subjects</h2>
+				<h2>Location</h2>
+				<h2>Arrangement</h2>
+
+			</div>
+
+		</div>
+	</div>
+</div>

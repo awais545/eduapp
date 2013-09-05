@@ -1,0 +1,74 @@
+<html>
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+</head>
+<body leftmargin="0" marginheight="0" marginwidth="0" offset="0" style='width:100%;color:#363636;background-color:#F2F2F2;font-family:"Helvetica Neue",Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;' topmargin="0">
+	<center>
+		<table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%">
+			<tr>
+				<td align="center" style="padding-bottom:40px;" valign="top">
+					<table border="0" cellpadding="0" cellspacing="0" style="margin-top:40px;margin-left:10px;margin-right:10px;border: 1px solid #e3e3e3;background-color: #FFFFFF;" width="460">
+						<tr>
+							<td width="30">
+								&nbsp;
+							</td>
+							<td align="center" height="90" style="border-bottom: 1px solid #eeeeee;" valign="middle">
+								<img src="http://www.eduapp.nl/assets/eduapp_logo_red-a8626e4da4219a862a3e4e3a5801dfae.png">
+							</td>
+							<td width="30">
+								&nbsp;
+							</td>
+						</tr>
+						<!-- /START BODY -->
+						<tr>
+							<td style="padding-top:30px;padding-bottom:30px;border-bottom: 1px solid #eeeeee;" width="30">
+								&nbsp;
+							</td>
+							<td align="left" style="font-size:14px;padding-top:30px;padding-bottom:30px;border-bottom: 1px solid #eeeeee;" valign="top">
+								<p style="margin:0px;line-height:24px">
+									Dear <%= @resource.name %>,
+									<br>
+									<br>
+									Thank you for subscribing to Eduapp.
+									<br>
+									<br>
+									<%= link_to 'Click here to confirm your registration.', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token), :style => "padding:10px 14px;background-color:#17a792;color:#ffffff;text-decoration:none;font-weight:bold;"%>
+									<br>
+									<br>
+									<span style="font-size:12px">
+										Link above does not work? Copy the following address into your browser:
+										<%= link_to confirmation_url(@resource, :confirmation_token => @resource.confirmation_token), confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %>
+									</span>
+									<br>
+									<br>
+									Sincerely,
+									<br>
+									The Eduapp-team
+								</p>
+							</td>
+							<td style="padding-top:30px;padding-bottom:30px;border-bottom: 1px solid #eeeeee;" width="30">
+								&nbsp;
+							</td>
+						</tr>
+						<!-- /END BODY -->
+
+						<tr>
+							<td style="font-size:11px;border-top: 1px solid #eeeeee;padding-top:20px;padding-bottom:20px;background-color:#f8f8f8;color:#707070;" width="30">
+								&nbsp;
+							</td>
+							<td align="left" style="font-size:11px;border-top: 1px solid #eeeeee;padding-top:20px;padding-bottom:20px;background-color:#f8f8f8;color:#707070;" valign="top">
+								This email was sent to
+								<a href="#" style="color:#17a792;text-decoration:none;"><%= @mail %></a>.
+								Do not want to receive emails from Eduapp in the future, please indicate this in your <%= link_to "preferences", "#", :style => "color:#17a792;text-decoration:none;" %>
+							</td>
+							<td style="font-size:11px;border-top: 1px solid #eeeeee;padding-top:20px;padding-bottom:20px;background-color:#f8f8f8;color:#707070;" width="30">
+								&nbsp;
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</center>
+</body>
+</html>

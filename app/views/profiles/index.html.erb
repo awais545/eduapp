@@ -1,0 +1,41 @@
+<div class="container main_container">
+
+	<div class="row nav_back">
+		<div class="span2">
+			<ul class="nav nav-list">
+				<li class=<%= "active" if params[:action] == "index" %>><%= link_to "Profile", profiles_path %></li>
+				<li class=<%= "active" if params[:action] == "about" %>><%= link_to "About", about_profiles_path %></li>
+				<li class=<%= "active" if params[:action] == "education" %>><%= link_to "Education", education_profiles_path %></li>
+				<li class=<%= "active" if params[:action] == "experience" %>><%= link_to "Experience", experience_profiles_path %></li>
+				<li class=<%= "active" if params[:action] == "commitment" %>><%= link_to "Commitment", commitment_profiles_path %></li>
+			</ul>
+
+		</div>
+		<div class="span10 main">
+			<div class="content">
+				<h1>Profile</h1>
+				<hr>
+				<%= render 'layouts/messages' %>
+
+				<%= simple_form_for(current_user, :url => profile_path(current_user), :html => { :method => :put, :class => 'form-horizontal form-vertical' }) do |f| %>
+				<%= f.error_notification %>
+				<%= display_base_errors current_user %>
+				<%= f.input :name, :autofocus => true, :required => true %>
+				<%= f.input :surname, :required => true %>
+				<%= f.input :dob, :label => "Date of birth", include_blank: true, start_year: Date.today.year - 90, end_year: Date.today.year - 10 %>
+				<%= f.input :sex, as: :select, include_blank: false,collection: [["Male", 1], ["Female",0]], :selected => current_user.sex ? 1 : 0%> 
+				<%= f.input :race, placeholder: "Chinese, Malay, Indian, Other" %>
+				<%= f.input :qualification, label: "Highest qualification", placeholder: "BSc, Master, PhD" %>
+				<%= f.input :zip, label: "Postal code", placeholder: "Eg. 123456" %>
+
+				<div class="form-actions">
+					<%= f.button :submit, 'Save', :class => 'btn-submit btn' %>
+				</div>
+
+				<% end %>
+
+			</div>
+
+		</div>
+	</div>
+</div>

@@ -1,0 +1,48 @@
+	<!-- Modal -->
+	
+	<%= render :partial => "tos" %>
+
+	<div class="container">
+		<div class="row">
+			<div class="span3"></div>
+			<div class="span6 dialog">
+				<div class="logo" style="height:52px">
+					<%= link_to image_tag("logo.png", :width => 169, :height => 52), root_path %>
+				</div>
+				<hr>
+				<%= render 'layouts/messages' %>
+				<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'form-horizontal form-horizontal' }) do |f| %>
+				<%= f.error_notification %>
+				<%= display_base_errors resource %>
+				<h2>Sign Up</h2>
+				<p>Enter your details below to create Eduapp for an account.</p>
+				<%= f.input :name, :autofocus => true, :size => 50 %>
+				<%= f.input :surname, :size => 50, :required => true %>
+
+				<div class="permalink" style="padding-bottom: 15px;">
+					<%= f.input :permalink, :size => 30, :required => true, :label => "Choose your unique web address Eduapp" %>
+					<p class="help-block" style="margin-top: -30px;">http://eduapp.nl/profielen/</p>
+				</div>
+
+				<%= f.input :email, :size => 50, :required => true  %>
+				<%= f.input :password, :size => 50, :required => true  %>
+				<p class="help-block">The password must be at least 8 characters.</p>
+				<%= f.input :password_confirmation, :size => 50, :required => true  %>
+				
+				<%= f.input :terms_of_service, :required => true, :label => link_to("I agree to the term", "#modal", :style => "margin-left: 25px;", "data-toggle" =>"modal"), :label_class => "aa",:item_wrapper_class => "bb"  %>
+
+
+
+				<div class="form-actions">
+					<%= f.button :submit, 'Sign up!', :class => 'btn-submit btn' %>
+				</div>
+				<% end %>
+
+				<div class="dialog_footer">
+					Have an account? <%= link_to "Login here.", new_user_session_path %>
+				</div>
+
+			</div>
+			<div class="span3"></div>
+		</div>
+	</div>

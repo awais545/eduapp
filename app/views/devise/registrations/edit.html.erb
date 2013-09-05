@@ -1,0 +1,51 @@
+<div class="container main_container">
+
+	<div class="row">
+		<div class="span12 main one_column">
+			<div class="content">
+				<h1>Settings</h1>
+				<hr>
+				<%= render 'layouts/messages' %>
+				<h2>Connects</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>	
+				<div class="form-horizontal form-vertical">
+					<div class="form-actions">
+						<span class="btn-submit btn">Get more Connects</span>
+					</div>
+				</div>
+				<h2>Change Password</h2>
+				<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form-horizontal form-vertical' }) do |f| %>
+				<%= f.error_notification %>
+				<%= display_base_errors resource %>
+				<%= f.input :password, :autocomplete => "off", :required => false %>
+				<%= f.input :password_confirmation, :required => false %>
+				<div class="form-actions">
+					<%= f.button :submit, 'Change password', :class => 'btn-submit btn' %>
+				</div>
+				<% end %>
+				<h2>Verify Account</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+				<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form-horizontal form-vertical' }) do |f| %>
+				<%= f.error_notification %>
+				<%= display_base_errors resource %>
+				<%= f.input :phone, :required => false %>
+				<div class="form-actions">
+					<%= f.button :submit, 'Change password', :class => 'btn-submit btn' %>
+				</div>
+				<% end %>
+
+				<h2>Cancel my account</h2>
+				<p>Unhappy? </p>
+				<div class="form-horizontal form-vertical">
+					<div class="form-actions">
+						<%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "btn-submit btn" %>.
+					</div>
+				</div>
+
+
+
+			</div>
+
+		</div>
+	</div>
+</div>
