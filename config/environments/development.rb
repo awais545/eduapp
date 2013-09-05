@@ -36,12 +36,7 @@ Eduapp::Application.configure do
   config.assets.debug = true
   
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-  
-  ActionMailer::Base.delivery_method = :sendmail
-  
-  #ActionMailer::Base.delivery_method = :test
-  ActionMailer::Base.sendmail_settings = {
-    :location       => '/usr/sbin/sendmail',
-    :arguments      => '-i -t -f info@slevomor.cz'
-  }
+
+  # letter opener configurations
+  config.action_mailer.delivery_method = :letter_opener
 end
