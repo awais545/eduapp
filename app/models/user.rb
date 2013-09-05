@@ -17,6 +17,4 @@ class User < ActiveRecord::Base
   has_many :educations
   has_many :experiences
   accepts_nested_attributes_for :educations
-  
-
 end
