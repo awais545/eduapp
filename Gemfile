@@ -12,7 +12,6 @@ gem 'jquery-rails'
 gem 'cancan'
 gem 'devise'
 gem 'figaro'
-gem 'mysql2'
 gem 'rolify'
 gem 'simple_form'
 
@@ -25,8 +24,9 @@ end
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :rbx]
-  gem 'quiet_assets'
   gem 'mysql2'
+  gem 'pry'
+  gem 'pry-rails'
 end
 
 group :development, :test do
@@ -34,6 +34,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'thin'
 end
+
 group :production do
   gem "thin"
   gem 'pg', '0.15.1'
