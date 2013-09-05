@@ -9,113 +9,22 @@
 	<%= csrf_meta_tags %>
 	<%= yield(:head) %>
 </head>
+
 <body class="two_column" data-twttr-rendered="true">
 	<div class="full_container">
 
-	<!-- Modal -->
-	<div class="hide modal" id="modal" role="dialog" tabindex="-1">
-		<div id="modal-content"></div>
-	</div>
-
-	<div class="loader"></div>
-	<div class="header">
-		<div class="container">
-			<div class="navbar pull-left">
-				<a href="/" class="brand">
-					<img alt="Eduapp_logo" src="/assets/logo_hp.png">
-				</a>
-			</div>
-			<div class="navbar navbar-right pull-right">
-				<ul class="nav">
-					<% if current_user %>
-					<li class="active profile">
-						<a class="dropdown-toggle main-nav" data-hover="dropdown" data-toggle="dropdown" href="/profielen/pupca">
-							<img alt="Thumb" src="/assets/missing_avatart_thumb.png">
-							<span class="caret"></span>
-						</a>
-						<ul class="dropdown-menu pull-right">
-							<li>
-								<%= link_to "Profile", profiles_path %>
-							</li>
-							<li>
-								<a href="/pages/bids">Bids</a>
-							</li>
-							<li>
-								<a href="/pages/referrals">Referrals</a>
-							</li>
-							<li>
-								<%= link_to "Settings", edit_user_registration_path %>
-							</li>
-							<li class="divider"></li>
-							<li>
-								<a href="/pages/inbox">Inbox</a>
-							</li>
-							<li class="divider"></li>
-							<li>
-								<%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-							</li>
-						</ul>
-					</li>
-					<% end %>
-					<!-- %li=link_to t('.login', :default => 'Uitloggen'), logout_path, :method => :delete -->
-				</ul>
-			</div>
+		<!-- Modal -->
+		<div class="hide modal" id="modal" role="dialog" tabindex="-1">
+			<div id="modal-content"></div>
 		</div>
+
+		<div class="loader"></div>
+
+		<%= render partial: "shared/header" %>
+		<%= yield %>
+		<div class="clearfooter"></div>
 	</div>
-
-
-	<%= yield %>
-
-	<div class="clearfooter"></div>
-	</div>
-	<div class="footer">
-		<div class="container">
-			<div class="row">
-				<div class="span3">
-					<ul>
-						<li><a href="/">Home</a></li>
-						<li><a href="#">Why Eduapp?</a></li>
-						<li><a href="#">For Who?</a></li>
-						<li><a href="#">How does it work?</a></li>
-					</ul>
-				</div>
-				<div class="span3">
-					<ul>
-						<li><a href="#">About Us</a></li>
-						<li><a href="#" target="_blank">Blog</a></li>
-						<li><a href="#">Press</a></li>
-						<li><a href="#">International</a></li>
-					</ul>
-				</div>
-				<div class="span3">
-					<ul>
-						<li><a href="/contact">Contact</a></li>
-						<li><a href="#">awais545@gmail.com</a></li>
-					</ul>
-				</div>
-				<div class="span3">
-					<ul>
-						<li>
-							<strong>New Eduapp</strong>
-						</li>
-						<li>
-							<a href="#" target="_blank">
-								<img alt="Social_tw" src="/assets/social_tw.png">
-								Twitter
-							</a>
-						</li>
-						<li>
-							<a href="#" target="_blank">
-								<img alt="Social_fb" src="/assets/social_fb.png">
-								Facebook
-							</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-
+	<%= render partial: "shared/footer" %>
 </body>
 </html>
 

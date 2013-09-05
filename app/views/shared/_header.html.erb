@@ -1,0 +1,44 @@
+<div class="header">
+	<div class="container">
+		<div class="navbar pull-left">
+			<a href="/" class="brand">
+				<img alt="Eduapp_logo" src="/assets/logo_hp.png">
+			</a>
+		</div>
+		<div class="navbar navbar-right pull-right">
+			<ul class="nav">
+				<% if current_user %>
+				<li class="active profile">
+					<a class="dropdown-toggle main-nav" data-hover="dropdown" data-toggle="dropdown" href="/profielen/pupca">
+						<img alt="Thumb" src="/assets/missing_avatart_thumb.png">
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu pull-right">
+						<li>
+							<%= link_to "Profile", profiles_path %>
+						</li>
+						<li>
+							<a href="/pages/bids">Bids</a>
+						</li>
+						<li>
+							<a href="/pages/referrals">Referrals</a>
+						</li>
+						<li>
+							<%= link_to "Settings", edit_user_registration_path %>
+						</li>
+						<li class="divider"></li>
+						<li>
+							<a href="/pages/inbox">Inbox</a>
+						</li>
+						<li class="divider"></li>
+						<li>
+							<%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+						</li>
+					</ul>
+				</li>
+				<% end %>
+				<!-- %li=link_to t('.login', :default => 'Uitloggen'), logout_path, :method => :delete -->
+			</ul>
+		</div>
+	</div>
+</div>
