@@ -27,7 +27,7 @@ group :development do
   gem 'mysql2'
   gem 'pry'
   gem 'pry-rails'
-  # gem 'letter-opener'
+  gem 'letter-opener'
 end
 
 group :development, :test do
